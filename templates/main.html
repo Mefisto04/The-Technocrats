@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+    /* background-color: #121212; */
+    color: #121212;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    
+}
+
+nav {
+    background-color: #c9c8c8;
+    color: #121212;
+    padding: 10px 0;
+    /* position: sticky; */
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+h1{
+    text-align: center;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-left: 10px;
+    align-items: center;
+    /* text-align: center; */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #121212;
+}
+.cont1,.cont2{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 120px;
+    margin-right:120px ;
+}
+
+img{
+    height: 30rem;
+    width: 30rem;
+}
+.img23{
+    height: 25rem;
+    width: 25rem;
+}
+.qp,.qp2{
+    font-size: 20px;
+}
+.predict-button {
+    background-color: #009688;
+    color: #121212;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 auto;
+
+}
+
+.predict-button:hover {
+    background-color: #00766c;
+    color: #121212;
+}
+.a{
+    text-decoration: none;
+    color: white;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="map.html" target="_blank">Map</a></li>
+            <li><a href="avatar.html" target="_blank">Contact</a></li>
+        </ul>
+        <button class="predict-button"><a href="index.html" class="a">Predict</a></button>
+    </nav>
+    <section class="std">
+        <div class="cont1">
+            <div class="im"><img src="doctorp.jpg" alt=""></div>
+            <div class="qp"><span style="color: red; font-size: 30px; font-weight: bold;">Personalized Care : </span>We're here to provide personalized healthcare tailored to your unique needs. Our experienced team of doctors is dedicated to your well-being, offering a wide range of services from routine check-ups to specialized care. <br> <br>
+                <span style="color: red; font-size: 30px; font-weight: bold;">Stay Informed and Connected : </span> Access the latest healthcare updates, expert advice, and telemedicine services. Stay connected with us through our platform, where your health and safety are our top priorities. <br> <br>
+                <span style="color: red; font-size: 30px; font-weight: bold;">Emergency Ready : </span> In case of emergencies, we're just a call away. We provide immediate medical assistance and support when you need it most. Your health is our commitment, and we're here to help you lead a healthy life.</div>
+        </div>
+        <div class="cont2">
+            <div class="qp2"><p><span style="color: red; font-size: 30px; font-weight: bold;">Maintain a Healthy Diet : </span>Emphasize the importance of a balanced diet rich in fruits, vegetables, whole grains, lean proteins, and low-fat dairy products. Encourage users to limit their intake of saturated and trans fats, cholesterol, sodium, and added sugars. <br><br>
+                <span style="color: red; font-size: 30px; font-weight: bold;">Regular Physical Activity : </span>Highlight the significance of regular exercise for heart health. Recommend at least 150 minutes of moderate-intensity aerobic activity or 75 minutes of vigorous-intensity aerobic activity per week, along with muscle-strengthening activities on two or more days a week. Encourage users to find physical activities they enjoy and can incorporate into their daily routines. <br><br>
+                <span style="color: red; font-size: 30px; font-weight: bold;">Stress Management and Lifestyle Choices : </span>Educate users about the impact of stress on heart health and suggest stress-reduction techniques such as meditation, deep breathing exercises, and yoga. Additionally, advise them to avoid smoking and limit alcohol consumption. Provide information about the risks associated with these lifestyle choices and offer resources for quitting smoking and seeking help for alcohol-related issues.</p></div>
+            <div class="im2"><img src="heart.jpg" alt="" class="img23"></div>
+        </div>
+        
+    </section>
+    
+</body>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+    ScrollReveal({ 
+    reset: true,
+    distance: '80px',
+    duration: 2000,
+    delay:200
+});
+ScrollReveal().reveal('.home-content, .heading', { origin : 'top'});
+ScrollReveal().reveal('.home-img img, .services-container,contact form', { origin : 'bottom'});
+ScrollReveal().reveal('.qp2, .im', { origin : 'left'});
+ScrollReveal().reveal('.home-content h3,.im2, .qp', { origin : 'right'});
+</script>
+</html>
