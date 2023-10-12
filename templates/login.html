@@ -6,7 +6,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #e5e8dc8e;
             margin: 0;
             padding: 0;
             display: flex;
@@ -58,85 +58,76 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
-            width:40%;
+            width: 40%;
         }
 
         button:hover {
             background-color: #0056b3;
-        }
-        .reg{
-            color: white;
-            text-decoration: none;
         }
 
         #message {
             margin-top: 10px;
             color: green;
         }
+        .aae{
+            text-decoration: none;
+            color: white;
+        }
     </style>
-    <title>User Registration and Authentication</title>
+    <title>User Login</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <label for="loginUsername">Username:</label>
-            <input type="text" id="loginUsername" required><br>
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required><br>
 
-            <label for="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" required><br>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required><br>
 
-            <button type="submit"><a href="index.html" class="reg">Login</a></button>
-        </form>
+        <button type="submit"><a href="main.html" class="aae">Login</a></button>
+    </form>
 
-        <p id="message"></p>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const registrationForm = document.getElementById('registrationForm');
-            const loginForm = document.getElementById('loginForm');
-            const message = document.getElementById('message');
+    <p id="message"></p>
+</div>
 
-            registrationForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                const dob = document.getElementById('dob').value;
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                const email = document.getElementById('email').value;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginForm = document.getElementById('loginForm');
+        const message = document.getElementById('message');
 
-                const user = {
-                    name,
-                    dob,
-                    username,
-                    password,
-                    email
-                };
+        // Check if 'users' data storage object exists, and create it if not
+        const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : {};
 
-                // Store user data in local storage (This is a simplified example)
-                localStorage.setItem(username, JSON.stringify(user));
-                message.textContent = 'Registration successful. You can now log in.';
-                registrationForm.reset();
-            });
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const loginUsername = document.getElementById('loginUsername').value;
+            const loginPassword = document.getElementById('loginPassword').value;
 
-            loginForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const loginUsername = document.getElementById('loginUsername').value;
-                const loginPassword = document.getElementById('loginPassword').value;
-
-                // Retrieve user data from local storage (This is a simplified example)
-                const user = JSON.parse(localStorage.getItem(loginUsername));
-
-                if (user && user.password === loginPassword) {
-                    message.textContent = 'Login successful. Welcome, ' + user.name + '!';
+            // Check if the entered username exists in the 'users' object
+            if (users.hasOwnProperty(loginUsername)) {
+                // Check if the entered password matches the stored password
+                if (users[loginUsername].password === loginPassword) {
+                    message.textContent = 'Login successful. Welcome, ' + users[loginUsername].name + '!';
                 } else {
-                    message.textContent = 'Invalid username or password.';
+                    message.textContent = 'Invalid password. Please try again.';
                 }
+            } else {
+                message.textContent = 'Invalid username. Please try again.';
+            }
 
-                loginForm.reset();
-            });
+            loginForm.reset();
         });
-    </script>
+    });
+</script>
 </body>
 </html>
+
+
+<!-- for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(`Key: ${key}, Value: ${value}`);
+  } -->
+  
