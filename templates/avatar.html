@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            /* background-color: #121212; */
+            color: #121212;
+            background-color: #bfdce58e;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+
+            background-color: white;
+            border: 1px solid #ccc;
+            color: #121212;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #121212;
+
+        }
+
+        #userCards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .userCard {
+            border: 1px solid #ccc;
+            color: #121212;
+            border-radius: 5px;
+            background-color: #e5e8dc8e;
+            padding: 20px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .userAvatar {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        .bot{
+            padding: 10px 10px;
+            border-radius: 10px;
+            border: 0px;
+            background-color: rgb(22, 146, 218);
+            color: white;
+
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <title>Doctor Consultancy</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Doctor Consultancy</h1>
+        <div id="userCards">
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userCardsContainer = document.getElementById('userCards');
+
+            function generateUserCards(numCards) {
+                for (let i = 0; i < numCards; i++) {
+                    fetch('https://randomuser.me/api/')
+                        .then(response => response.json())
+                        .then(data => {
+                            const user = data.results[0];
+                            const name = `${user.name.first} ${user.name.last}`;
+                            const experience = `Experience : ${user.dob.age-25}`;
+                            const city = user.location.city;
+                            const avatar = user.picture.medium;
+
+                            const userCard = document.createElement('div');
+                            userCard.classList.add('userCard');
+                            userCard.innerHTML = `
+                                <img src="${avatar}" alt="User Avatar" class="userAvatar">
+                                <h2>${name}</h2>
+                                <p>${experience}</p>
+                                <p>${city}</p>
+                                <button class="bot"><a href="payment.html">Book</a></button>
+                            `;
+
+                            userCardsContainer.appendChild(userCard);
+                        })
+                        .catch(error => console.error('Error fetching random user:', error));
+                }
+            }
+
+            // Generate a specified number of user cards (e.g., 5)
+            generateUserCards(10);
+        });
+    </script>
+</body>
+</html>

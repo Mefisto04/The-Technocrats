@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5e8dc8e;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 60%;
+            padding-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            border-bottom: 2px rgb(90, 90, 90) solid;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 40%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 10px;
+            color: green;
+        }
+        .aae{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <title>User Login</title>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" required><br>
+
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required><br>
+
+        <button type="submit"><a href="main.html" class="aae">Login</a></button>
+    </form>
+
+    <p id="message"></p>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginForm = document.getElementById('loginForm');
+        const message = document.getElementById('message');
+
+        // Check if 'users' data storage object exists, and create it if not
+        const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : {};
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const loginUsername = document.getElementById('loginUsername').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            // Check if the entered username exists in the 'users' object
+            if (users.hasOwnProperty(loginUsername)) {
+                // Check if the entered password matches the stored password
+                if (users[loginUsername].password === loginPassword) {
+                    message.textContent = 'Login successful. Welcome, ' + users[loginUsername].name + '!';
+                } else {
+                    message.textContent = 'Invalid password. Please try again.';
+                }
+            } else {
+                message.textContent = 'Invalid username. Please try again.';
+            }
+
+            loginForm.reset();
+        });
+    });
+</script>
+</body>
+</html>
+
+
+<!-- for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(`Key: ${key}, Value: ${value}`);
+  } -->
+  
