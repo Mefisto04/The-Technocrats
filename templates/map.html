@@ -31,14 +31,13 @@
     <title>City Map Search</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <style>
-        /* Reset some default styles */
+      
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
 
-        /* Set a background color */
         body {
             background-color: #121212;
             color: #ffffff;
@@ -50,7 +49,6 @@
             height: 100%;
         }
 
-        /* Style the map container */
         .map {
             height: 400px;
             width: 80%;
@@ -66,31 +64,26 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Initialize the map
-        var map = L.map('map').setView([0, 0], 2);
 
-        // Add an OpenStreetMap tile layer
+        var map = L.map('map').setView([0, 0], 2);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
         }).addTo(map);
 
-        // Function to get user's location and display the city
         function getUserLocation() {
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var latitude = position.coords.latitude;
                     var longitude = position.coords.longitude;
-                    map.setView([latitude, longitude], 16); // Zoom to user's location
+                    map.setView([latitude, longitude], 16); 
                 });
             } else {
                 alert('Geolocation is not supported by your browser.');
             }
         }
 
-        // Call the function to get user location on page load
         getUserLocation();
 
-        // Update map center on window resize to maintain proper centering
         window.addEventListener('resize', function () {
             map.invalidateSize();
         });
