@@ -97,7 +97,6 @@
         const loginForm = document.getElementById('loginForm');
         const message = document.getElementById('message');
 
-        // Check if 'users' data storage object exists, and create it if not
         const users = localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : {};
 
         loginForm.addEventListener('submit', function (e) {
@@ -105,9 +104,8 @@
             const loginUsername = document.getElementById('loginUsername').value;
             const loginPassword = document.getElementById('loginPassword').value;
 
-            // Check if the entered username exists in the 'users' object
             if (users.hasOwnProperty(loginUsername)) {
-                // Check if the entered password matches the stored password
+          
                 if (users[loginUsername].password === loginPassword) {
                     message.textContent = 'Login successful. Welcome, ' + users[loginUsername].name + '!';
                 } else {
