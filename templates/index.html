@@ -173,7 +173,7 @@ input[type="text"]:focus {
 
 
     document.getElementById("predict-button").addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent the form from submitting and the page from reloading
+        event.preventDefault(); 
         var formData = new FormData(document.getElementById("prediction-form"));
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/predict");
@@ -181,7 +181,7 @@ input[type="text"]:focus {
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var predictionResult = xhr.responseText;
-                alert("Prediction Result: " + predictionResult); // Display the result in an alert
+                alert("Prediction Result: " + predictionResult); 
             }
         };
     });
